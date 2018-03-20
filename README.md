@@ -1,2 +1,2 @@
 # M2103_TP
-TPs du module M2103 (c++)
+TPs du module M2103 (COO)
