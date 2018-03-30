@@ -14,16 +14,17 @@ using namespace nsUtil;
 void testDureeDeBase ()
 {
     vector <Duree *> desDurees;
+    desDurees.resize(10);
 
     unsigned sec;
-    while (!cin.fail())
+    for (unsigned i = 0; i < desDurees.size(); i++)
     {
         cout << "Entrez une duree en secondes : ";
         cin >> sec;
         cout << endl;
 
         Duree *D = new Duree (sec);
-        desDurees.push_back(D);
+        desDurees[i] = D;
     }
 
     for (Duree *duree : desDurees)
@@ -32,5 +33,10 @@ void testDureeDeBase ()
              << ", soit : ";
         duree->display ();
         cout << '\n';
+    }
+
+    for (Duree *duree : desDurees)
+    {
+        duree->~Duree();
     }
 } // testDureeDeBase

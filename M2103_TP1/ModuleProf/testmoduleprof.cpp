@@ -28,7 +28,7 @@ namespace {
 
         // Operations
         void   display (); // Affiche le nom du prof
-        void   addModule (Module & module);
+        void   addModule (Module * module);
         string getName ();
         void   setName (string & name);
 
@@ -50,13 +50,18 @@ namespace {
 
         // Operations
         void   display (); // Affiche le nom du module
-        void   addProf (Prof & prof);
+        void   addProf (Prof * prof);
         string getName ();
         void   setName (string & name);
 
     }; // Module
 
     //---- Prof operations ----//
+    Prof::Prof (const string &name) noexcept
+    {
+        Prof::myName = name;
+    } // Prof Constructor
+
     void Prof::display()
     {
         for (Module *module : myModules)
@@ -65,7 +70,7 @@ namespace {
         }
     } // Prof::display
 
-    void Prof::addModule(Module & module)
+    void Prof::addModule(Module * module)
     {
         myModules.push_back(module);
     } // Prof::addModule
@@ -82,6 +87,11 @@ namespace {
 
 
     //---- Module operations ----//
+    Module::Module (const string &name) noexcept
+    {
+        Module::myName = name;
+    } // Module Constructor
+
     void Module::display()
     {
         for (Prof *prof : myProfs)
@@ -90,7 +100,7 @@ namespace {
         }
     } // Module::display
 
-    void Module::addProf(Prof & prof)
+    void Module::addProf(Prof * prof)
     {
         myProfs.push_back(prof);
     } // Module::addProf
@@ -162,22 +172,26 @@ namespace {
         // Affichage des profs et leurs modules
         for (Prof *prof : vectProfs)
         {
+            cout << "++" << prof->getName() << endl;
             prof->display();
-
-            for (Module *module : prof->myModules)
-                cout << "   - " << module->getName() << endl;
         }
 
         // Affichage des modules et leurs profs
         for (Module *module : vectModules)
         {
+            cout << "++" << module->getName() << endl;
             module->display();
-
-            for (Prof *prof : module->myProfs)
-                cout << "   - " << prof->getName() << endl;
         }
 
-        delete vectModules;
-        delete vectProfs;
+        for (Module *module : vectModules)
+        {
+            delete module;
+        }
+
+        for (Prof *prof : vectProfs)
+        {
+            delete prof;
+        }
+
     }
 } // namespace
