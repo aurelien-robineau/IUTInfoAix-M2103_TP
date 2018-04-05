@@ -4,8 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    duree.cpp \
-    testduree.cpp
+    testrationnel.cpp \
+    rationnel.cpp
 
 HEADERS += \
-    duree.h
+    rationnel.h
