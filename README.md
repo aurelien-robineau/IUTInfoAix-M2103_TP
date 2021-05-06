@@ -1,2 +1,2 @@
-# M2103_TP
-TPs du module M2103 (COO)
+# M2103 TP
+Object-oriented programming exercices for the M2103 module of IUT Informatique d'Aix.
